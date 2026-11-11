@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-// Landing page
 </script>
 
 <style scoped>

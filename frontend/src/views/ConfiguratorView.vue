@@ -1,24 +1,28 @@
 <template>
   <div class="configurator-view">
     <div class="canvas-container">
-      <TresCanvas>
+      <TresCanvas :power-preference="'high-performance'" :antialias="false">
         <RoomScene :preset-id="presetId" />
       </TresCanvas>
+      <FPSMonitor />
     </div>
-    <ControlPanel class="control-panel" />
+    <div class="control-panel-wrapper">
+      <ControlPanel />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { TresCanvas } from '@tresjs/core'
 import RoomScene from '@/components/scene/RoomScene.vue'
-import ControlPanel from '@/components/ui/ControlPanel.vue'
+import ControlPanel from '@/components/ui/panels/ControlPanel.vue'
+import FPSMonitor from '@/components/scene/components/performance/FPSMonitor.vue'
 
 interface Props {
   presetId?: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 </script>
 
 <style scoped>
@@ -26,26 +30,21 @@ const props = defineProps<Props>()
   width: 100%;
   height: 100%;
   display: flex;
-  position: relative;
+  flex-direction: row;
 }
 
 .canvas-container {
-  flex: 1;
-  width: 100%;
+  flex: 0 0 80%;
+  width: 80%;
   height: 100%;
+  overflow: hidden;
 }
 
-.control-panel {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 320px;
-  max-height: calc(100vh - 2rem);
-  overflow-y: auto;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
+.control-panel-wrapper {
+  flex: 0 0 20%;
+  width: 20%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>
 

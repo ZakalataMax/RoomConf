@@ -2,14 +2,19 @@ import type { RoomPreset } from '@/types'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 
-class APIError extends Error {
+export class APIError extends Error {
+  statusCode?: number
+  response?: Response
+
   constructor(
     message: string,
-    public statusCode?: number,
-    public response?: Response
+    statusCode?: number,
+    response?: Response
   ) {
     super(message)
     this.name = 'APIError'
+    this.statusCode = statusCode
+    this.response = response
   }
 }
 
@@ -22,7 +27,6 @@ async function handleResponse<T>(response: Response): Promise<T> {
         errorMessage = errorData.detail
       }
     } catch {
-      // If response is not JSON, use statusText
     }
     throw new APIError(errorMessage, response.status, response)
   }

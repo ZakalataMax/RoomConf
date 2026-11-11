@@ -45,7 +45,6 @@
 </template>
 
 <script setup lang="ts">
-// About page
 </script>
 
 <style scoped>
