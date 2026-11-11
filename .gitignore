@@ -39,3 +39,4 @@ backend/presets.json
 # Testing
 coverage/
 
+.pytest_cache/
