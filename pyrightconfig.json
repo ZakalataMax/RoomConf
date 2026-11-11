@@ -1,0 +1,14 @@
+{
+  "venvPath": "backend",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false,
+  "exclude": ["**/node_modules", "**/.venv", "**/__pycache__", "frontend"],
+  "executionEnvironments": [
+    {
+      "root": "backend"
+    }
+  ]
+}
